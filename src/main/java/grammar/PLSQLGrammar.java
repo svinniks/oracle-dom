@@ -8,10 +8,17 @@ import java.io.InputStreamReader;
 
 public class PLSQLGrammar extends Grammar {
 
-    public PLSQLGrammar() throws IOException, GrammarParseException {
+    public PLSQLGrammar() {
+
         super();
-        append(new InputStreamReader(getClass().getResourceAsStream("/plsql.grm")));
-        append(new InputStreamReader(getClass().getResourceAsStream("/annotations.grm")));
+
+        try {
+            append(new InputStreamReader(getClass().getResourceAsStream("/grammar/plsql.grm")));
+            append(new InputStreamReader(getClass().getResourceAsStream("/grammar/annotations.grm")));
+        } catch (Exception ex) {
+            throw new RuntimeException("Critical error has occured while loading PLSQL grammar!", ex);
+        }
+
     }
 
 }

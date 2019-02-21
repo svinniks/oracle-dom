@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DomBuilder {
+public class DOMBuilder {
 
     private static TokenSerializer TOKEN_SERIALIZER;
 
@@ -184,10 +184,8 @@ public class DomBuilder {
 
             ReferenceType type = new ReferenceType();
 
-            type.reference = typeNode.getChildNode("REFERENCE").getChildNodes()
-                    .stream()
-                    .map(node -> node.getValue())
-                    .toArray(String[]::new);
+            for (SyntaxTreeNode referencePartNode : typeNode.getChildNode("REFERENCE").getChildNodes())
+                type.reference.add(referencePartNode.getValue());
 
             SyntaxTreeNode modifierNode = typeNode.getChildNode("TYPE_MODIFIER");
 

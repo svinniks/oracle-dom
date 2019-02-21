@@ -90,7 +90,7 @@ public class PLSQLTokenStream extends ArrayListTokenStream {
     }
 
     public PLSQLTokenStream(Reader source) throws IOException, ParseException {
-        this(source, new HashSet<>());
+        this(source, new HashSet<String>());
     }
 
     private void addToken(String value) {

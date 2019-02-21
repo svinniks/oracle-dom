@@ -12,6 +12,7 @@ import static grammar.AnnotationTokenStream.State.*;
 public class AnnotationTokenStream extends ArrayListTokenStream {
 
     public enum State {
+        LF_ANNOTATION,
         LF_TOKEN,
         LF_ANNOTATION_NAME,
         R_STRING_VALUE,
@@ -31,6 +32,15 @@ public class AnnotationTokenStream extends ArrayListTokenStream {
     public AnnotationTokenStream(Reader source) throws IOException, ParseException {
         this.source = source;
         parse();
+    }
+
+    private void lfAnnotation() throws ParseException {
+
+        if (ch == '@')
+            state = LF_ANNOTATION_NAME;
+        else if (!Character.isWhitespace(ch))
+            throw new ParseException(String.format("Unexpected character \"%c\"!", ch));
+
     }
 
     private void lfToken() throws ParseException {
@@ -222,14 +232,16 @@ public class AnnotationTokenStream extends ArrayListTokenStream {
 
         addToken(new GenericToken("ANNOTATION_START"));
 
-        state = LF_TOKEN;
+        state = LF_ANNOTATION;
         int chInt = source.read();
 
         while (chInt != -1) {
 
             ch = (char) chInt;
 
-            if (state == LF_TOKEN)
+            if (state == LF_ANNOTATION)
+                lfAnnotation();
+            else if (state == LF_TOKEN)
                 lfToken();
             else if (state == LF_ANNOTATION_NAME)
                 lfAnnotationName();

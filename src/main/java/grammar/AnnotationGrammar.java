@@ -10,7 +10,7 @@ public class AnnotationGrammar extends Grammar {
 
     public AnnotationGrammar() throws IOException, GrammarParseException {
         super();
-        append(new InputStreamReader(getClass().getResourceAsStream("/annotations.grm")));
+        append(new InputStreamReader(getClass().getResourceAsStream("/grammar/annotations.grm")));
     }
 
 }
