@@ -2,6 +2,7 @@ package database;
 
 import dom.DatabaseObject;
 import dom.Package;
+import dom.Table;
 import simplegrammar.ParseException;
 
 import java.sql.Connection;
@@ -18,6 +19,7 @@ public class DOM {
     static {
         LOADER_MAP = new HashMap<>();
         LOADER_MAP.put(Package.class, new PackageLoader());
+        LOADER_MAP.put(Table.class, new TableLoader());
     }
 
     public static <T extends DatabaseObject> T load(Connection connection, Class<T> objectType, String owner, String objectName) throws SQLException, DOMException, ParseException {
@@ -29,7 +31,7 @@ public class DOM {
 
         try (PreparedStatement statement = connection.prepareStatement(SQL.load("get_object.sql"))) {
 
-            statement.setString(1, loader.getObjectType());
+            statement.setString(1, loader.getOracleObjectType());
             statement.setString(2, owner);
             statement.setString(3, objectName);
 

@@ -21,7 +21,7 @@ public class PackageLoader extends CodeItemLoader<Package> {
     }
 
     @Override
-    public String getObjectType() {
+    public String getOracleObjectType() {
         return "PACKAGE";
     }
 }
