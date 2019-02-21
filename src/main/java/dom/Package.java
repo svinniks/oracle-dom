@@ -5,7 +5,7 @@ import java.util.List;
 
 import static dom.Authid.DEFINER;
 
-public class Package {
+public class Package extends CodeItem {
 
     String name;
     Authid authid;
@@ -13,7 +13,6 @@ public class Package {
 
     public Package() {
         declarations = new ArrayList<>();
-        authid = DEFINER;
     }
 
 }
