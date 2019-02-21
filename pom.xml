@@ -9,6 +9,42 @@
     <artifactId>oracle-dom</artifactId>
     <version>1.0.0</version>
 
+    <name>Oracle database object model</name>
+
+    <description>Library for gathering and parsing Oracle database object metadata and represent it in a Java object model</description>
+    <url>https://github.com/svinniks/simple-grammar</url>
+
+    <licenses>
+        <license>
+            <name>The Apache Licence, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Sergejs Vinniks</name>
+            <email>svinniks@inbox.lv</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git@github.com:svinniks/oracle-dom.git</connection>
+        <developerConnection>scm:git:git@github.com:svinniks/oracle-dom.git</developerConnection>
+        <url>git@github.com:svinniks/oracle-dom.git</url>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
     <dependencies>
 
         <dependency>
