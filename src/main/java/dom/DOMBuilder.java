@@ -151,7 +151,7 @@ public class DOMBuilder {
         SyntaxTreeNode typeNode = rootNode.getChildNode(0);
         String typeNodeValue = typeNode.getValue();
 
-        if (typeNodeValue.matches("^(SIMPLE_PARAMETER_TYPE)|(SIMPLE_VARIABLE_TYPE)|(INDEX_BY_TYPE)$")) {
+        if (typeNodeValue.matches("^(SIMPLE_PARAMETER_TYPE)|(SIMPLE_VARIABLE_TYPE)$")) {
 
             String name = typeNode.getChildValue(0);
 
@@ -340,7 +340,7 @@ public class DOMBuilder {
         AssociativeArrayType type = new AssociativeArrayType();
 
         type.dataType = buildDataType(rootNode.getChildNode("VARIABLE_TYPE"));
-        type.indexType = buildDataType(rootNode.getChildNode("INDEX_BY"));
+        type.indexType = buildDataType(rootNode.getChildNode("INDEX_BY").getChildNode("VARIABLE_TYPE"));
 
         return type;
 
