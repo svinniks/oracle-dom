@@ -254,7 +254,7 @@ public class DOMBuilder {
             else if (value.equals("DETERMINISTIC"))
                 directives.deterministic = true;
             else if (value.equals("PARALLEL_ENABLE"))
-                directives.parellel = true;
+                directives.parallel = true;
             else if (value.equals("RESULT_CACHE"))
                 directives.resultCache = true;
 
@@ -264,12 +264,33 @@ public class DOMBuilder {
 
     }
 
+    public static CallSpecification buildCallSpecification(SyntaxTreeNode rootNode) {
+
+        SyntaxTreeNode asLanguageNode = rootNode.getChildNode("AS_LANGUAGE").getChildNode(0);
+
+        if (asLanguageNode.getValue().equals("AS_LANGUAGE_JAVA")) {
+
+            JavaCallSpecification specification = new JavaCallSpecification();
+            specification.name = asLanguageNode.getChildValue(0);
+
+            return specification;
+
+        } else
+            return new CCallSpecification();
+
+    }
+
     public static Procedure buildProcedure(SyntaxTreeNode rootNode) {
 
         Procedure procedure = new Procedure();
         procedure.name = rootNode.getChildNode("SUBPROGRAM_NAME").getChildValue(0);
 
         procedure.parameters = buildParameters(rootNode.getChildNode("PARAMETERS"));
+
+        SyntaxTreeNode callSpecificationNode = rootNode.getChildNode("CALL_SPECIFICATION");
+
+        if (callSpecificationNode != null)
+            procedure.callSpecification = buildCallSpecification(callSpecificationNode);
 
         return procedure;
 
@@ -287,6 +308,11 @@ public class DOMBuilder {
 
         function.directives = buildFunctionDirectives(rootNode.getChildNode("DIRECTIVES"));
         function.returnAnnotations = buildAnnotations(functionReturnNode);
+
+        SyntaxTreeNode callSpecificationNode = rootNode.getChildNode("CALL_SPECIFICATION");
+
+        if (callSpecificationNode != null)
+            function.callSpecification = buildCallSpecification(callSpecificationNode);
 
         return function;
 

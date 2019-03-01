@@ -48,7 +48,19 @@ public class TokenSerializer {
                 "RIGHT_BRACKET".equals(name1) && "CONCATENATION_OPERATOR".equals(name2) ||
 
                 "LOGICAL_OPERATOR".equals(name1) && "LEFT_BRACKET".equals(name2) ||
-                "RIGHT_BRACKET".equals(name1) && "LOGICAL_OPERATOR".equals(name2);
+                "RIGHT_BRACKET".equals(name1) && "LOGICAL_OPERATOR".equals(name2) ||
+
+                "IDENTIFIER".equals(name1) && "STRING_LITERAL".equals(name2) ||
+                "STRING_LITERAL".equals(name1) && "IDENTIFIER".equals(name2) ||
+
+                "IDENTIFIER".equals(name1) && "NUMBER_LITERAL".equals(name2) ||
+                "NUMBER_LITERAL".equals(name1) && "IDENTIFIER".equals(name2) ||
+
+                "QUOTED_IDENTIFIER".equals(name1) && "STRING_LITERAL".equals(name2) ||
+                "STRING_LITERAL".equals(name1) && "QUOTED_IDENTIFIER".equals(name2) ||
+
+                "QUOTED_IDENTIFIER".equals(name1) && "NUMBER_LITERAL".equals(name2) ||
+                "NUMBER_LITERAL".equals(name1) && "QUOTED_IDENTIFIER".equals(name2);
 
     }
 

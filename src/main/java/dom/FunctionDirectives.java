@@ -2,7 +2,7 @@ package dom;
 
 public class FunctionDirectives {
     boolean deterministic;
-    boolean parellel;
+    boolean parallel;
     boolean resultCache;
     boolean pipelined;
 }
